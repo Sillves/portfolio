@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lorenz Cleymans — Developer & Creative</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="nav" id="nav">
+    <a href="#hero" class="nav__logo">LC</a>
+    <button class="nav__toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav__links" id="navLinks">
+      <li><a href="#about" class="nav__link">About</a></li>
+      <li><a href="#projects" class="nav__link">Projects</a></li>
+      <li><a href="#contact" class="nav__link">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero" id="hero">
+    <div class="hero__bg"></div>
+    <div class="hero__content">
+      <h1 class="hero__title">
+        Hi, I'm <span class="hero__name">Lorenz</span>
+      </h1>
+      <p class="hero__tagline">Developer &amp; Creative — building bold digital experiences</p>
+      <a href="#projects" class="btn btn--primary hero__cta">See My Work</a>
+    </div>
+    <div class="hero__scroll-hint">
+      <span>Scroll</span>
+      <div class="hero__scroll-arrow"></div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="section about" id="about">
+    <div class="container">
+      <h2 class="section__title reveal">About Me</h2>
+      <div class="about__grid reveal">
+        <div class="about__text">
+          <p>
+            I'm a developer and creative who loves turning ideas into polished digital products.
+            Whether it's a freelance project for a client or a side project born from curiosity,
+            I bring the same energy: clean code, thoughtful design, and a drive to ship things that matter.
+          </p>
+          <p>
+            When I'm not coding, you'll find me exploring new tech, designing interfaces,
+            or brainstorming the next thing to build.
+          </p>
+        </div>
+        <div class="about__skills">
+          <h3>Tech &amp; Skills</h3>
+          <div class="tags">
+            <span class="tag tag--pink">React</span>
+            <span class="tag tag--blue">TypeScript</span>
+            <span class="tag tag--green">Node.js</span>
+            <span class="tag tag--orange">Next.js</span>
+            <span class="tag tag--purple">C#</span>
+            <span class="tag tag--yellow">.NET</span>
+            <span class="tag tag--pink">HTML/CSS</span>
+            <span class="tag tag--blue">PostgreSQL</span>
+            <span class="tag tag--green">Docker</span>
+            <span class="tag tag--orange">Figma</span>
+            <span class="tag tag--purple">Git</span>
+            <span class="tag tag--yellow">REST APIs</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section class="section projects" id="projects">
+    <div class="container">
+      <h2 class="section__title reveal">Projects</h2>
+      <div class="projects__filter reveal">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="freelance">Freelance Work</button>
+        <button class="filter-btn" data-filter="side">Side Projects</button>
+      </div>
+      <div class="projects__grid" id="projectsGrid">
+
+        <!-- Project Card 1 -->
+        <article class="card reveal" data-category="freelance">
+          <div class="card__image">
+            <div class="card__placeholder card__placeholder--1">E-Commerce</div>
+          </div>
+          <div class="card__body">
+            <h3 class="card__title">E-Commerce Platform</h3>
+            <p class="card__desc">Full-stack online store with inventory management, payments integration, and a custom CMS for the client.</p>
+            <div class="tags tags--small">
+              <span class="tag tag--pink">React</span>
+              <span class="tag tag--green">Node.js</span>
+              <span class="tag tag--blue">PostgreSQL</span>
+            </div>
+            <div class="card__links">
+              <a href="#" class="btn btn--small btn--outline">Live Site</a>
+              <a href="#" class="btn btn--small btn--outline">GitHub</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project Card 2 -->
+        <article class="card reveal" data-category="freelance">
+          <div class="card__image">
+            <div class="card__placeholder card__placeholder--2">Wedding App</div>
+          </div>
+          <div class="card__body">
+            <h3 class="card__title">Wedding Planning App</h3>
+            <p class="card__desc">A beautiful wedding website with RSVP management, budget tracker, and guest communication tools.</p>
+            <div class="tags tags--small">
+              <span class="tag tag--blue">TypeScript</span>
+              <span class="tag tag--orange">Next.js</span>
+              <span class="tag tag--purple">C#</span>
+            </div>
+            <div class="card__links">
+              <a href="#" class="btn btn--small btn--outline">Live Site</a>
+              <a href="#" class="btn btn--small btn--outline">GitHub</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project Card 3 -->
+        <article class="card reveal" data-category="freelance">
+          <div class="card__image">
+            <div class="card__placeholder card__placeholder--3">Dashboard</div>
+          </div>
+          <div class="card__body">
+            <h3 class="card__title">Analytics Dashboard</h3>
+            <p class="card__desc">Real-time analytics dashboard with interactive charts, custom reports, and role-based access control.</p>
+            <div class="tags tags--small">
+              <span class="tag tag--blue">TypeScript</span>
+              <span class="tag tag--pink">React</span>
+              <span class="tag tag--yellow">.NET</span>
+            </div>
+            <div class="card__links">
+              <a href="#" class="btn btn--small btn--outline">Live Site</a>
+              <a href="#" class="btn btn--small btn--outline">GitHub</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project Card 4 -->
+        <article class="card reveal" data-category="side">
+          <div class="card__image">
+            <div class="card__placeholder card__placeholder--4">CLI Tool</div>
+          </div>
+          <div class="card__body">
+            <h3 class="card__title">Dev Toolbox CLI</h3>
+            <p class="card__desc">A command-line utility that automates repetitive dev tasks — scaffolding, linting configs, and deployment scripts.</p>
+            <div class="tags tags--small">
+              <span class="tag tag--green">Node.js</span>
+              <span class="tag tag--blue">TypeScript</span>
+            </div>
+            <div class="card__links">
+              <a href="#" class="btn btn--small btn--outline">npm</a>
+              <a href="#" class="btn btn--small btn--outline">GitHub</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project Card 5 -->
+        <article class="card reveal" data-category="side">
+          <div class="card__image">
+            <div class="card__placeholder card__placeholder--5">Game</div>
+          </div>
+          <div class="card__body">
+            <h3 class="card__title">Pixel Puzzle Game</h3>
+            <p class="card__desc">A browser-based puzzle game with procedurally generated levels, leaderboards, and a retro pixel-art aesthetic.</p>
+            <div class="tags tags--small">
+              <span class="tag tag--pink">HTML/CSS</span>
+              <span class="tag tag--yellow">Canvas API</span>
+              <span class="tag tag--blue">TypeScript</span>
+            </div>
+            <div class="card__links">
+              <a href="#" class="btn btn--small btn--outline">Play</a>
+              <a href="#" class="btn btn--small btn--outline">GitHub</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project Card 6 -->
+        <article class="card reveal" data-category="side">
+          <div class="card__image">
+            <div class="card__placeholder card__placeholder--6">API</div>
+          </div>
+          <div class="card__body">
+            <h3 class="card__title">Open Weather Aggregator</h3>
+            <p class="card__desc">An open-source API that aggregates multiple weather sources and provides a unified, developer-friendly interface.</p>
+            <div class="tags tags--small">
+              <span class="tag tag--purple">C#</span>
+              <span class="tag tag--yellow">.NET</span>
+              <span class="tag tag--green">Docker</span>
+            </div>
+            <div class="card__links">
+              <a href="#" class="btn btn--small btn--outline">Docs</a>
+              <a href="#" class="btn btn--small btn--outline">GitHub</a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="section contact" id="contact">
+    <div class="container">
+      <h2 class="section__title reveal">Get In Touch</h2>
+      <div class="contact__grid reveal">
+        <form class="contact__form" id="contactForm" novalidate>
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required placeholder="Your name">
+            <span class="form-error" id="nameError"></span>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required placeholder="you@example.com">
+            <span class="form-error" id="emailError"></span>
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" required placeholder="What's on your mind?"></textarea>
+            <span class="form-error" id="messageError"></span>
+          </div>
+          <button type="submit" class="btn btn--primary btn--full">Send Message</button>
+          <p class="form-success" id="formSuccess">Thanks! Your message has been sent.</p>
+        </form>
+        <div class="contact__info">
+          <p>Prefer to reach out directly? Find me on these platforms:</p>
+          <div class="socials">
+            <a href="#" class="social-link" aria-label="GitHub">
+              <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.387.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.083-.73.083-.73 1.205.085 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.605-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg>
+            </a>
+            <a href="#" class="social-link" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+            <a href="#" class="social-link" aria-label="Twitter / X">
+              <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="mailto:hello@lorenz.dev" class="social-link" aria-label="Email">
+              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2026 Lorenz Cleymans. Built with care.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
