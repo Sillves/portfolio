@@ -6,7 +6,7 @@ const navToggle = document.getElementById('navToggle');
 const navLinks = document.getElementById('navLinks');
 const navItems = document.querySelectorAll('.nav__link');
 
-// Scroll shadow
+// Scroll border
 window.addEventListener('scroll', () => {
   nav.classList.toggle('nav--scrolled', window.scrollY > 50);
 });
@@ -34,7 +34,7 @@ function highlightNav() {
   const scrollY = window.scrollY + 120;
 
   sections.forEach(section => {
-    const top = section.offsetTop;
+    const top = section.getBoundingClientRect().top + window.scrollY;
     const height = section.offsetHeight;
     const id = section.getAttribute('id');
     const link = document.querySelector(`.nav__link[href="#${id}"]`);
@@ -50,30 +50,6 @@ function highlightNav() {
 }
 
 window.addEventListener('scroll', highlightNav);
-
-/* ============================================
-   Project Filter
-   ============================================ */
-const filterBtns = document.querySelectorAll('.filter-btn');
-const cards = document.querySelectorAll('.card[data-category]');
-
-filterBtns.forEach(btn => {
-  btn.addEventListener('click', () => {
-    // Update active button
-    filterBtns.forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-
-    const filter = btn.dataset.filter;
-
-    cards.forEach(card => {
-      if (filter === 'all' || card.dataset.category === filter) {
-        card.classList.remove('hidden');
-      } else {
-        card.classList.add('hidden');
-      }
-    });
-  });
-});
 
 /* ============================================
    Scroll Reveal (Intersection Observer)
@@ -95,57 +71,20 @@ const revealObserver = new IntersectionObserver((entries) => {
 revealElements.forEach(el => revealObserver.observe(el));
 
 /* ============================================
-   Contact Form Validation
+   Cursor Spotlight (fine pointers only)
    ============================================ */
-const form = document.getElementById('contactForm');
-const nameInput = document.getElementById('name');
-const emailInput = document.getElementById('email');
-const messageInput = document.getElementById('message');
-const nameError = document.getElementById('nameError');
-const emailError = document.getElementById('emailError');
-const messageError = document.getElementById('messageError');
-const formSuccess = document.getElementById('formSuccess');
+const spotlight = document.getElementById('spotlight');
+const finePointer = window.matchMedia('(pointer: fine)').matches;
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-function validateEmail(email) {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+if (spotlight && finePointer && !reducedMotion) {
+  let frame = null;
+  window.addEventListener('pointermove', (e) => {
+    if (frame) return;
+    frame = requestAnimationFrame(() => {
+      spotlight.style.setProperty('--x', `${e.clientX}px`);
+      spotlight.style.setProperty('--y', `${e.clientY}px`);
+      frame = null;
+    });
+  });
 }
-
-function clearErrors() {
-  [nameInput, emailInput, messageInput].forEach(el => el.classList.remove('error'));
-  [nameError, emailError, messageError].forEach(el => el.textContent = '');
-}
-
-form.addEventListener('submit', (e) => {
-  e.preventDefault();
-  clearErrors();
-  formSuccess.classList.remove('visible');
-
-  let valid = true;
-
-  if (!nameInput.value.trim()) {
-    nameInput.classList.add('error');
-    nameError.textContent = 'Please enter your name.';
-    valid = false;
-  }
-
-  if (!emailInput.value.trim()) {
-    emailInput.classList.add('error');
-    emailError.textContent = 'Please enter your email.';
-    valid = false;
-  } else if (!validateEmail(emailInput.value.trim())) {
-    emailInput.classList.add('error');
-    emailError.textContent = 'Please enter a valid email address.';
-    valid = false;
-  }
-
-  if (!messageInput.value.trim()) {
-    messageInput.classList.add('error');
-    messageError.textContent = 'Please enter a message.';
-    valid = false;
-  }
-
-  if (valid) {
-    formSuccess.classList.add('visible');
-    form.reset();
-  }
-});
