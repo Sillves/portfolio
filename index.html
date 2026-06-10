@@ -3,259 +3,388 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lorenz Cleymans — Developer & Creative</title>
+  <title>Lorenz Cleymans — Senior Freelance .NET Developer · L-Craft</title>
+  <meta name="description" content="Senior freelance .NET & Azure developer in the Antwerp area, operating through L-Craft. Backend & cloud specialist — .NET, Azure, Terraform, Kubernetes — and builder of Amare Wedding and CoachOS.">
+  <meta property="og:title" content="Lorenz Cleymans — Senior Freelance .NET Developer · L-Craft">
+  <meta property="og:description" content="Backend & cloud specialist (.NET, Azure, Terraform, Kubernetes) who also ships his own SaaS products end-to-end: Amare Wedding and CoachOS.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#0b0b0e">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+  <div class="spotlight" id="spotlight" aria-hidden="true"></div>
+
   <!-- Navigation -->
   <nav class="nav" id="nav">
-    <a href="#hero" class="nav__logo">LC</a>
+    <a href="#hero" class="nav__logo">L-Craft<span>.</span></a>
     <button class="nav__toggle" id="navToggle" aria-label="Toggle menu">
       <span></span><span></span><span></span>
     </button>
     <ul class="nav__links" id="navLinks">
-      <li><a href="#about" class="nav__link">About</a></li>
-      <li><a href="#projects" class="nav__link">Projects</a></li>
-      <li><a href="#contact" class="nav__link">Contact</a></li>
+      <li><a href="#products" class="nav__link"><span>01</span>products</a></li>
+      <li><a href="#experience" class="nav__link"><span>02</span>experience</a></li>
+      <li><a href="#skills" class="nav__link"><span>03</span>skills</a></li>
+      <li><a href="#about" class="nav__link"><span>04</span>about</a></li>
+      <li><a href="#contact" class="nav__link"><span>05</span>contact</a></li>
     </ul>
   </nav>
 
   <!-- Hero -->
-  <section class="hero" id="hero">
-    <div class="hero__bg"></div>
-    <div class="hero__content">
-      <h1 class="hero__title">
-        Hi, I'm <span class="hero__name">Lorenz</span>
-      </h1>
-      <p class="hero__tagline">Developer &amp; Creative — building bold digital experiences</p>
-      <a href="#projects" class="btn btn--primary hero__cta">See My Work</a>
+  <header class="hero" id="hero">
+    <div class="container hero__inner">
+      <div class="hero__content">
+        <p class="hero__eyebrow">Lorenz Cleymans — L-Craft · Antwerp area, Belgium</p>
+        <h1 class="hero__title">I build backends<br>that <em>ship</em>.</h1>
+        <p class="hero__tagline">
+          Senior freelance .NET developer specialized in Azure, Terraform, Kubernetes
+          and DevOps. I strengthen backend teams at companies like Baloise and
+          Delen Private Bank — and build my own SaaS products end-to-end.
+        </p>
+        <div class="hero__actions">
+          <a href="#contact" class="btn btn--primary">Work with me</a>
+          <a href="#products" class="btn btn--ghost">See my products</a>
+          <span class="status"><span class="status__dot"></span>Open to freelance inquiries</span>
+        </div>
+      </div>
     </div>
-    <div class="hero__scroll-hint">
-      <span>Scroll</span>
-      <div class="hero__scroll-arrow"></div>
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker__track">
+        <div class="ticker__group">
+          <span class="ticker__item">.NET</span><span class="ticker__sep">/</span>
+          <span class="ticker__item">C#</span><span class="ticker__sep">/</span>
+          <span class="ticker__item">Azure</span><span class="ticker__sep">/</span>
+          <span class="ticker__item">Terraform</span><span class="ticker__sep">/</span>
+          <span class="ticker__item">Kubernetes</span><span class="ticker__sep">/</span>
+          <span class="ticker__item">Docker</span><span class="ticker__sep">/</span>
+          <span class="ticker__item">SQL</span><span class="ticker__sep">/</span>
+          <span class="ticker__item">Cosmos DB</span><span class="ticker__sep">/</span>
+          <span class="ticker__item">RabbitMQ</span><span class="ticker__sep">/</span>
+          <span class="ticker__item">Kafka</span><span class="ticker__sep">/</span>
+          <span class="ticker__item">CI/CD</span><span class="ticker__sep">/</span>
+          <span class="ticker__item">Microservices</span><span class="ticker__sep">/</span>
+        </div>
+        <div class="ticker__group">
+          <span class="ticker__item">.NET</span><span class="ticker__sep">/</span>
+          <span class="ticker__item">C#</span><span class="ticker__sep">/</span>
+          <span class="ticker__item">Azure</span><span class="ticker__sep">/</span>
+          <span class="ticker__item">Terraform</span><span class="ticker__sep">/</span>
+          <span class="ticker__item">Kubernetes</span><span class="ticker__sep">/</span>
+          <span class="ticker__item">Docker</span><span class="ticker__sep">/</span>
+          <span class="ticker__item">SQL</span><span class="ticker__sep">/</span>
+          <span class="ticker__item">Cosmos DB</span><span class="ticker__sep">/</span>
+          <span class="ticker__item">RabbitMQ</span><span class="ticker__sep">/</span>
+          <span class="ticker__item">Kafka</span><span class="ticker__sep">/</span>
+          <span class="ticker__item">CI/CD</span><span class="ticker__sep">/</span>
+          <span class="ticker__item">Microservices</span><span class="ticker__sep">/</span>
+        </div>
+      </div>
     </div>
-  </section>
+  </header>
 
-  <!-- About -->
-  <section class="section about" id="about">
-    <div class="container">
-      <h2 class="section__title reveal">About Me</h2>
-      <div class="about__grid reveal">
-        <div class="about__text">
-          <p>
-            I'm a developer and creative who loves turning ideas into polished digital products.
-            Whether it's a freelance project for a client or a side project born from curiosity,
-            I bring the same energy: clean code, thoughtful design, and a drive to ship things that matter.
+  <main>
+    <!-- Products -->
+    <section class="section" id="products">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-head__index">01</span>
+          <h2 class="section-head__title">Products</h2>
+        </div>
+        <p class="section-intro reveal">SaaS products I design, build and run myself — from first commit to production.</p>
+
+        <article class="feature reveal">
+          <div class="feature__visual feature__visual--amare" aria-hidden="true">
+            <span class="feature__wordmark">Amare</span>
+          </div>
+          <div class="feature__content">
+            <p class="feature__label">SaaS · Wedding planning</p>
+            <h3 class="feature__title">Amare Wedding</h3>
+            <p class="feature__desc">
+              A wedding planning platform built from the ground up. First put to the
+              test at a real wedding — my brother's. Now reaching out to Belgian
+              wedding planners.
+            </p>
+            <ul class="feature__list">
+              <li>Guest management &amp; RSVPs</li>
+              <li>Digital invitations</li>
+              <li>Budget tracking</li>
+              <li>Website builder for couples</li>
+            </ul>
+            <div class="chips">
+              <span class="chip">.NET</span>
+              <span class="chip">React</span>
+              <span class="chip">PostgreSQL</span>
+              <span class="chip">Scaleway</span>
+              <span class="chip">Multi-tenancy</span>
+            </div>
+            <div class="feature__links">
+              <a href="https://amare.wedding" target="_blank" rel="noopener" class="link-arrow">amare.wedding</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="feature feature--flip reveal">
+          <div class="feature__visual feature__visual--coachos" aria-hidden="true">
+            <span class="feature__wordmark">CoachOS</span>
+          </div>
+          <div class="feature__content">
+            <p class="feature__label">SaaS · Sports scheduling</p>
+            <h3 class="feature__title">CoachOS</h3>
+            <p class="feature__desc">
+              Automatic scheduling for tennis and padel coaches, co-founded with
+              Eloy Boone. It replaces Excel files and long email chains:
+            </p>
+            <ol class="feature__steps">
+              <li>Coaches define a lesson series</li>
+              <li>Share a registration link</li>
+              <li>CoachOS generates the planning automatically</li>
+            </ol>
+            <div class="feature__links">
+              <a href="https://www.coach-os.be" target="_blank" rel="noopener" class="link-arrow">coach-os.be</a>
+              <a href="mailto:info@coach-os.be" class="link-arrow">info@coach-os.be</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Experience -->
+    <section class="section" id="experience">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-head__index">02</span>
+          <h2 class="section-head__title">Experience</h2>
+        </div>
+
+        <article class="job reveal">
+          <div class="job__when">Nov 2024 — present<span>Antwerp</span></div>
+          <div class="job__body">
+            <h3 class="job__title">Baloise Insurance</h3>
+            <p class="job__role">.NET Developer · freelance via L-Craft</p>
+            <p class="job__desc">
+              Backend development for client-facing applications serving insurance brokers
+              and end customers, in a microservices architecture on Azure. Part of the
+              backend technical-leadership duo, helping shape architecture decisions that
+              balance delivery speed with long-term maintainability.
+            </p>
+            <ul class="job__bullets">
+              <li>SOAP/ESB integrations with the Baloise ESB, using Microcks for service mocking.</li>
+              <li>Infrastructure as code with Terraform; CI/CD via Azure DevOps YAML pipelines, from PR to production.</li>
+              <li>Led the KQL-to-LogQL observability migration (Application Insights → Grafana/Loki), building an internal KQL→LogQL converter and a "Deploy Monitor" bookmarklet for Azure DevOps.</li>
+              <li>AI innovation week: demonstrated automated Playwright test generation and an AI-based PBI refinement agent.</li>
+            </ul>
+            <div class="chips">
+              <span class="chip">.NET</span>
+              <span class="chip">Azure Functions</span>
+              <span class="chip">Cosmos DB</span>
+              <span class="chip">Terraform</span>
+              <span class="chip">Docker</span>
+              <span class="chip">SOAP</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="job reveal">
+          <div class="job__when">Jan 2024 — Nov 2024<span>Antwerp</span></div>
+          <div class="job__body">
+            <h3 class="job__title">Delen Private Bank</h3>
+            <p class="job__role">.NET Developer · N-Core team</p>
+            <p class="job__desc">
+              Built new features for the client booking tool and a range of internal
+              applications, and refactored legacy functionality into a modern structure —
+              preserving behavior while improving security and readability.
+            </p>
+            <div class="chips">
+              <span class="chip">.NET</span>
+              <span class="chip">SQL</span>
+              <span class="chip">SignalR</span>
+              <span class="chip">RabbitMQ</span>
+              <span class="chip">Kubernetes</span>
+              <span class="chip">MediatR</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="job reveal">
+          <div class="job__when">Nov 2022 — Dec 2023<span>Antwerp</span></div>
+          <div class="job__body">
+            <h3 class="job__title">DACX.ai</h3>
+            <p class="job__role">.NET Developer</p>
+            <p class="job__desc">
+              SaaS start-up for personalized customer experience — a spin-off of Delen
+              Private Bank — building enriched profiles per contact by synchronizing data
+              sources like LinkedIn and HubSpot. Built
+              data-source integrations, enterprise features and a fail-safe connection with
+              the payment platform — with data quality and integrity as top priorities.
+            </p>
+            <div class="chips">
+              <span class="chip">.NET</span>
+              <span class="chip">Azure Service Bus</span>
+              <span class="chip">Multi-tenancy</span>
+              <span class="chip">Kubernetes</span>
+              <span class="chip">Akka.NET</span>
+              <span class="chip">SignalR</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="job reveal">
+          <div class="job__when">Aug 2019 — Nov 2022<span>Antwerp</span></div>
+          <div class="job__body">
+            <h3 class="job__title">Axxes</h3>
+            <p class="job__role">.NET Consultant</p>
+            <p class="job__desc">Four projects across very different domains:</p>
+            <div class="job__projects">
+              <div class="mini-project">
+                <h4>EMG Belgium <span>2022</span></h4>
+                <p>Built the backend of the Tour de France "Teams Radio" application from
+                scratch: live rider–car audio split into channels, Google Speech-to-Text,
+                multi-language translation and per-team clip creation with NDI streaming —
+                near real-time, used during the live race.</p>
+              </div>
+              <div class="mini-project">
+                <h4>MyCSN <span>2021</span></h4>
+                <p>Smart-city data platform for Flanders: ingested REST and real-time Kafka
+                datasets into TimescaleDB time-series storage and exposed GeoJSON-compatible
+                APIs feeding a "SmartMap" frontend.</p>
+              </div>
+              <div class="mini-project">
+                <h4>Philips Lighting <span>2020 – 2021</span></h4>
+                <p>Backend for an industrial light-line configurator generating BOMs, with
+                millimeter-precision collision detection and complex compatibility rules
+                between components.</p>
+              </div>
+              <div class="mini-project">
+                <h4>Toyota Material Handling <span>2019 – 2020</span></h4>
+                <p>Sole developer on an ASP.NET Core MVC application — bug fixing, new
+                features, and integrating a legacy VB time-registration system.</p>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section class="section" id="skills">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-head__index">03</span>
+          <h2 class="section-head__title">Skills</h2>
+        </div>
+        <div class="skills__grid">
+          <div class="skill-card reveal">
+            <h3 class="skill-card__name">Backend</h3>
+            <div class="chips">
+              <span class="chip">.NET</span>
+              <span class="chip">C#</span>
+            </div>
+          </div>
+          <div class="skill-card reveal">
+            <h3 class="skill-card__name">Cloud &amp; Infra</h3>
+            <div class="chips">
+              <span class="chip">Azure</span>
+              <span class="chip">Terraform</span>
+              <span class="chip">Kubernetes</span>
+              <span class="chip">Docker</span>
+            </div>
+          </div>
+          <div class="skill-card reveal">
+            <h3 class="skill-card__name">Data &amp; Messaging</h3>
+            <div class="chips">
+              <span class="chip">SQL</span>
+              <span class="chip">Cosmos DB</span>
+              <span class="chip">RabbitMQ</span>
+              <span class="chip">Azure Service Bus</span>
+              <span class="chip">Kafka</span>
+            </div>
+          </div>
+          <div class="skill-card reveal">
+            <h3 class="skill-card__name">Practices</h3>
+            <div class="chips">
+              <span class="chip">CI/CD</span>
+              <span class="chip">DevOps</span>
+              <span class="chip">Microservices</span>
+              <span class="chip">Multi-tenancy</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-head__index">04</span>
+          <h2 class="section-head__title">About</h2>
+        </div>
+        <div class="about__grid reveal">
+          <div class="about__text">
+            <p>
+              Off the clock you'll find me on a padel court, in the gym, behind a camera,
+              or on a snowboard. I have a long scouting background — including two years
+              leading a group of around 300 members, where I learned to lead and organize.
+            </p>
+            <p>
+              I also tutor students aged 12 to 21 in math, English, Dutch, .NET and SQL.
+            </p>
+          </div>
+          <div class="about__education">
+            <h3>Education &amp; Certifications</h3>
+            <ul class="education-list">
+              <li>
+                <span class="education-list__what">Bachelor, Informatica (Software Engineering)</span>
+                <span class="education-list__where">Thomas More · 2016 — 2019</span>
+              </li>
+              <li>
+                <span class="education-list__what">Microsoft Exam 483: Programming in C#</span>
+                <span class="education-list__where">Microsoft · 2020</span>
+              </li>
+              <li>
+                <span class="education-list__what">PSM I</span>
+                <span class="education-list__where">Scrum.org · 2021</span>
+              </li>
+              <li>
+                <span class="education-list__what">Speaker Training</span>
+                <span class="education-list__where">Ursatile · 2020</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section contact" id="contact">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-head__index">05</span>
+          <h2 class="section-head__title">Contact</h2>
+        </div>
+        <div class="contact__body reveal">
+          <p class="contact__pitch">
+            Looking for a senior .NET/Azure developer to strengthen your backend team?
+            Or curious about Amare Wedding or CoachOS? Get in touch — I'm happy to talk.
           </p>
-          <p>
-            When I'm not coding, you'll find me exploring new tech, designing interfaces,
-            or brainstorming the next thing to build.
-          </p>
-        </div>
-        <div class="about__skills">
-          <h3>Tech &amp; Skills</h3>
-          <div class="tags">
-            <span class="tag tag--pink">React</span>
-            <span class="tag tag--blue">TypeScript</span>
-            <span class="tag tag--green">Node.js</span>
-            <span class="tag tag--orange">Next.js</span>
-            <span class="tag tag--purple">C#</span>
-            <span class="tag tag--yellow">.NET</span>
-            <span class="tag tag--pink">HTML/CSS</span>
-            <span class="tag tag--blue">PostgreSQL</span>
-            <span class="tag tag--green">Docker</span>
-            <span class="tag tag--orange">Figma</span>
-            <span class="tag tag--purple">Git</span>
-            <span class="tag tag--yellow">REST APIs</span>
+          <a href="mailto:lorenzcleymans@hotmail.com" class="contact__mega">lorenzcleymans@hotmail.com</a>
+          <div class="contact__meta">
+            <a href="https://www.linkedin.com/in/lorenz-cleymans-52a776150/" target="_blank" rel="noopener" class="link-arrow">LinkedIn</a>
+            <a href="tel:+32494142419" class="link-arrow">+32 494 14 24 19</a>
+            <span class="contact__location">Antwerp area, Belgium</span>
           </div>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- Projects -->
-  <section class="section projects" id="projects">
-    <div class="container">
-      <h2 class="section__title reveal">Projects</h2>
-      <div class="projects__filter reveal">
-        <button class="filter-btn active" data-filter="all">All</button>
-        <button class="filter-btn" data-filter="freelance">Freelance Work</button>
-        <button class="filter-btn" data-filter="side">Side Projects</button>
-      </div>
-      <div class="projects__grid" id="projectsGrid">
-
-        <!-- Project Card 1 -->
-        <article class="card reveal" data-category="freelance">
-          <div class="card__image">
-            <div class="card__placeholder card__placeholder--1">E-Commerce</div>
-          </div>
-          <div class="card__body">
-            <h3 class="card__title">E-Commerce Platform</h3>
-            <p class="card__desc">Full-stack online store with inventory management, payments integration, and a custom CMS for the client.</p>
-            <div class="tags tags--small">
-              <span class="tag tag--pink">React</span>
-              <span class="tag tag--green">Node.js</span>
-              <span class="tag tag--blue">PostgreSQL</span>
-            </div>
-            <div class="card__links">
-              <a href="#" class="btn btn--small btn--outline">Live Site</a>
-              <a href="#" class="btn btn--small btn--outline">GitHub</a>
-            </div>
-          </div>
-        </article>
-
-        <!-- Project Card 2 -->
-        <article class="card reveal" data-category="freelance">
-          <div class="card__image">
-            <div class="card__placeholder card__placeholder--2">Wedding App</div>
-          </div>
-          <div class="card__body">
-            <h3 class="card__title">Wedding Planning App</h3>
-            <p class="card__desc">A beautiful wedding website with RSVP management, budget tracker, and guest communication tools.</p>
-            <div class="tags tags--small">
-              <span class="tag tag--blue">TypeScript</span>
-              <span class="tag tag--orange">Next.js</span>
-              <span class="tag tag--purple">C#</span>
-            </div>
-            <div class="card__links">
-              <a href="#" class="btn btn--small btn--outline">Live Site</a>
-              <a href="#" class="btn btn--small btn--outline">GitHub</a>
-            </div>
-          </div>
-        </article>
-
-        <!-- Project Card 3 -->
-        <article class="card reveal" data-category="freelance">
-          <div class="card__image">
-            <div class="card__placeholder card__placeholder--3">Dashboard</div>
-          </div>
-          <div class="card__body">
-            <h3 class="card__title">Analytics Dashboard</h3>
-            <p class="card__desc">Real-time analytics dashboard with interactive charts, custom reports, and role-based access control.</p>
-            <div class="tags tags--small">
-              <span class="tag tag--blue">TypeScript</span>
-              <span class="tag tag--pink">React</span>
-              <span class="tag tag--yellow">.NET</span>
-            </div>
-            <div class="card__links">
-              <a href="#" class="btn btn--small btn--outline">Live Site</a>
-              <a href="#" class="btn btn--small btn--outline">GitHub</a>
-            </div>
-          </div>
-        </article>
-
-        <!-- Project Card 4 -->
-        <article class="card reveal" data-category="side">
-          <div class="card__image">
-            <div class="card__placeholder card__placeholder--4">CLI Tool</div>
-          </div>
-          <div class="card__body">
-            <h3 class="card__title">Dev Toolbox CLI</h3>
-            <p class="card__desc">A command-line utility that automates repetitive dev tasks — scaffolding, linting configs, and deployment scripts.</p>
-            <div class="tags tags--small">
-              <span class="tag tag--green">Node.js</span>
-              <span class="tag tag--blue">TypeScript</span>
-            </div>
-            <div class="card__links">
-              <a href="#" class="btn btn--small btn--outline">npm</a>
-              <a href="#" class="btn btn--small btn--outline">GitHub</a>
-            </div>
-          </div>
-        </article>
-
-        <!-- Project Card 5 -->
-        <article class="card reveal" data-category="side">
-          <div class="card__image">
-            <div class="card__placeholder card__placeholder--5">Game</div>
-          </div>
-          <div class="card__body">
-            <h3 class="card__title">Pixel Puzzle Game</h3>
-            <p class="card__desc">A browser-based puzzle game with procedurally generated levels, leaderboards, and a retro pixel-art aesthetic.</p>
-            <div class="tags tags--small">
-              <span class="tag tag--pink">HTML/CSS</span>
-              <span class="tag tag--yellow">Canvas API</span>
-              <span class="tag tag--blue">TypeScript</span>
-            </div>
-            <div class="card__links">
-              <a href="#" class="btn btn--small btn--outline">Play</a>
-              <a href="#" class="btn btn--small btn--outline">GitHub</a>
-            </div>
-          </div>
-        </article>
-
-        <!-- Project Card 6 -->
-        <article class="card reveal" data-category="side">
-          <div class="card__image">
-            <div class="card__placeholder card__placeholder--6">API</div>
-          </div>
-          <div class="card__body">
-            <h3 class="card__title">Open Weather Aggregator</h3>
-            <p class="card__desc">An open-source API that aggregates multiple weather sources and provides a unified, developer-friendly interface.</p>
-            <div class="tags tags--small">
-              <span class="tag tag--purple">C#</span>
-              <span class="tag tag--yellow">.NET</span>
-              <span class="tag tag--green">Docker</span>
-            </div>
-            <div class="card__links">
-              <a href="#" class="btn btn--small btn--outline">Docs</a>
-              <a href="#" class="btn btn--small btn--outline">GitHub</a>
-            </div>
-          </div>
-        </article>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact -->
-  <section class="section contact" id="contact">
-    <div class="container">
-      <h2 class="section__title reveal">Get In Touch</h2>
-      <div class="contact__grid reveal">
-        <form class="contact__form" id="contactForm" novalidate>
-          <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" required placeholder="Your name">
-            <span class="form-error" id="nameError"></span>
-          </div>
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" required placeholder="you@example.com">
-            <span class="form-error" id="emailError"></span>
-          </div>
-          <div class="form-group">
-            <label for="message">Message</label>
-            <textarea id="message" name="message" rows="5" required placeholder="What's on your mind?"></textarea>
-            <span class="form-error" id="messageError"></span>
-          </div>
-          <button type="submit" class="btn btn--primary btn--full">Send Message</button>
-          <p class="form-success" id="formSuccess">Thanks! Your message has been sent.</p>
-        </form>
-        <div class="contact__info">
-          <p>Prefer to reach out directly? Find me on these platforms:</p>
-          <div class="socials">
-            <a href="#" class="social-link" aria-label="GitHub">
-              <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.387.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.083-.73.083-.73 1.205.085 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.605-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg>
-            </a>
-            <a href="#" class="social-link" aria-label="LinkedIn">
-              <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-            </a>
-            <a href="#" class="social-link" aria-label="Twitter / X">
-              <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-            </a>
-            <a href="mailto:hello@l-craft.be" class="social-link" aria-label="Email">
-              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
   <!-- Footer -->
   <footer class="footer">
-    <div class="container">
-      <p>&copy; 2026 Lorenz Cleymans. Built with care.</p>
+    <div class="container footer__inner">
+      <p>&copy; 2026 Lorenz Cleymans · L-Craft</p>
+      <a href="#hero" class="footer__top">back to top ↑</a>
     </div>
   </footer>
 
