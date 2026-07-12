@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lief nieuws</title>
+  <meta name="robots" content="noindex, nofollow">
+  <script>
+    // TEMP: enkel zichtbaar tot 12 juli 2026, 23:00 (Belgische tijd)
+    if (Date.now() >= new Date('2026-07-12T23:00:00+02:00').getTime()) {
+      window.location.replace('/');
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Karla:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --paper: #fbf6ef;
+      --ink: #3d3630;
+      --soft: #8a7f73;
+      --blush: #e8b4b8;
+      --blush-deep: #d98e94;
+      --gold: #d9b98a;
+      --sage: #b5c4ad;
+    }
+
+    html, body { height: 100%; }
+
+    body {
+      font-family: 'Karla', sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    /* soft blobs of colour behind everything */
+    .blob {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(90px);
+      opacity: 0.35;
+      pointer-events: none;
+    }
+    .blob--1 { width: 45vmax; height: 45vmax; background: var(--blush); top: -18vmax; right: -12vmax; }
+    .blob--2 { width: 40vmax; height: 40vmax; background: var(--sage);  bottom: -16vmax; left: -14vmax; }
+    .blob--3 { width: 26vmax; height: 26vmax; background: var(--gold);  bottom: 8vmax; right: -8vmax; opacity: 0.22; }
+
+    .card {
+      position: relative;
+      max-width: 640px;
+      padding: 48px 28px;
+      z-index: 2;
+    }
+
+    .eyebrow {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--soft);
+      margin-bottom: 28px;
+      opacity: 0;
+      animation: rise 0.9s ease 0.3s forwards;
+    }
+
+    .title {
+      font-family: 'Fraunces', serif;
+      font-weight: 420;
+      font-size: clamp(2.6rem, 9vw, 4.8rem);
+      line-height: 1.08;
+      letter-spacing: -0.015em;
+      margin-bottom: 26px;
+      opacity: 0;
+      animation: rise 1s ease 0.7s forwards;
+    }
+
+    .title em {
+      font-style: italic;
+      color: var(--blush-deep);
+    }
+
+    .subtitle {
+      font-size: clamp(1rem, 2.6vw, 1.2rem);
+      color: var(--soft);
+      line-height: 1.7;
+      max-width: 420px;
+      margin: 0 auto 26px;
+      opacity: 0;
+      animation: rise 1s ease 1.2s forwards;
+    }
+
+    .due {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--soft);
+      margin-bottom: 40px;
+      opacity: 0;
+      animation: rise 1s ease 1.4s forwards;
+    }
+
+    .due strong {
+      color: var(--blush-deep);
+      font-weight: 600;
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      margin-bottom: 40px;
+      opacity: 0;
+      animation: rise 1s ease 1.5s forwards;
+    }
+
+    .divider::before, .divider::after {
+      content: '';
+      width: 56px;
+      height: 1px;
+      background: color-mix(in srgb, var(--soft) 40%, transparent);
+    }
+
+    .heart {
+      width: 46px;
+      height: 46px;
+      animation: beat 2.4s ease-in-out 2s infinite;
+    }
+
+    .signature {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-size: 1.25rem;
+      color: var(--ink);
+      opacity: 0;
+      animation: rise 1s ease 1.8s forwards;
+    }
+
+    .ps {
+      display: inline-block;
+      margin-top: 14px;
+      font-size: 0.82rem;
+      color: var(--soft);
+      text-decoration: none;
+      border-bottom: 1px solid color-mix(in srgb, var(--soft) 40%, transparent);
+      padding-bottom: 1px;
+      opacity: 0;
+      animation: rise 1s ease 2.2s forwards;
+    }
+
+    .ps:hover { color: var(--ink); border-color: var(--ink); }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes beat {
+      0%, 100% { transform: scale(1); }
+      12%      { transform: scale(1.14); }
+      24%      { transform: scale(1); }
+      36%      { transform: scale(1.1); }
+      48%      { transform: scale(1); }
+    }
+
+    /* floating confetti petals */
+    .petal {
+      position: fixed;
+      top: -4vh;
+      border-radius: 50% 50% 50% 0;
+      opacity: 0.75;
+      pointer-events: none;
+      animation: fall linear infinite;
+      z-index: 1;
+    }
+
+    @keyframes fall {
+      to { transform: translateY(110vh) rotate(540deg); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .eyebrow, .title, .subtitle, .due, .divider, .signature, .ps { animation: none; opacity: 1; }
+      .heart { animation: none; }
+      .petal { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="blob blob--1"></div>
+  <div class="blob blob--2"></div>
+  <div class="blob blob--3"></div>
+
+  <main class="card">
+    <p class="eyebrow">Lief nieuws</p>
+    <h1 class="title">Wij verwachten<br>een <em>kindje</em></h1>
+    <p class="subtitle">Ons kleinste, grootste avontuur is onderweg.<br>We konden het niet meer voor ons houden.</p>
+    <p class="due">verwacht in <strong>januari 2027</strong></p>
+    <div class="divider">
+      <svg class="heart" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M24 42C24 42 5 30.6 5 17.8C5 11 10.2 6 16.4 6C20 6 22.8 7.8 24 10.2C25.2 7.8 28 6 31.6 6C37.8 6 43 11 43 17.8C43 30.6 24 42 24 42Z" fill="#d98e94"/>
+      </svg>
+    </div>
+    <p class="signature">— Lorenz &amp; Sara</p>
+    <a class="ps" href="/">← en nu terug naar het portfolio</a>
+  </main>
+
+  <script>
+    // markeer als bekeken zodat de portfolio-toast niet meer verschijnt
+    localStorage.setItem('lc-baby-seen', '1');
+
+    // gentle falling petals in the page's palette
+    const colors = ['#e8b4b8', '#d9b98a', '#b5c4ad', '#d98e94'];
+    for (let i = 0; i < 26; i++) {
+      const p = document.createElement('div');
+      p.className = 'petal';
+      const size = 6 + Math.random() * 9;
+      p.style.width = size + 'px';
+      p.style.height = size + 'px';
+      p.style.left = Math.random() * 100 + 'vw';
+      p.style.background = colors[i % colors.length];
+      p.style.animationDuration = 7 + Math.random() * 9 + 's';
+      p.style.animationDelay = Math.random() * 10 + 's';
+      document.body.appendChild(p);
+    }
+  </script>
+</body>
+</html>

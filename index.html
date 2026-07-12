@@ -13,8 +13,204 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+
+  <!-- ============================================================
+       TEMP: baby-aankondiging (12 juli 2026) — verwijder dit blok,
+       het .gate-blok bovenaan <body>, de .btn--reveal knop in de
+       hero en baby.html om alles op te ruimen.
+       ============================================================ -->
+  <script>
+    (function () {
+      var DEADLINE = new Date('2026-07-12T23:00:00+02:00').getTime();
+      var params = new URLSearchParams(window.location.search);
+      if (params.has('reset')) sessionStorage.removeItem('lc-unlocked');
+      if (Date.now() >= DEADLINE) return; // na 23:00 gedraagt de site zich weer normaal
+      document.documentElement.classList.add('baby-active');
+      if (params.has('skip')) sessionStorage.setItem('lc-unlocked', '1');
+      if (sessionStorage.getItem('lc-unlocked') !== '1') {
+        document.documentElement.classList.add('baby-locked');
+      }
+    })();
+  </script>
+  <style>
+    .gate {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: var(--bg);
+    }
+
+    .gate::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.022) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.022) 1px, transparent 1px);
+      background-size: 64px 64px;
+    }
+
+    html.baby-locked { overflow: hidden; }
+    html.baby-locked .gate { display: flex; }
+
+    .gate__box {
+      position: relative;
+      width: 100%;
+      max-width: 420px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 40px 32px;
+      text-align: center;
+    }
+
+    .gate__logo {
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
+    }
+
+    .gate__logo span { color: var(--accent); }
+
+    .gate__label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 24px;
+    }
+
+    .gate__title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+
+    .gate__hint {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+
+    .gate__form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .gate__input {
+      width: 100%;
+      font-family: var(--font-mono);
+      font-size: 0.95rem;
+      color: var(--text);
+      background: var(--bg);
+      border: 1px solid var(--border-strong);
+      border-radius: 6px;
+      padding: 13px 16px;
+      outline: none;
+      text-align: center;
+      transition: border-color var(--transition);
+    }
+
+    .gate__input:focus { border-color: var(--accent); }
+
+    .gate__input.shake { animation: gateShake 0.4s ease; border-color: #ff6b6b; }
+
+    @keyframes gateShake {
+      0%, 100% { transform: translateX(0); }
+      20% { transform: translateX(-8px); }
+      40% { transform: translateX(8px); }
+      60% { transform: translateX(-5px); }
+      80% { transform: translateX(5px); }
+    }
+
+    .gate__error {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: #ff6b6b;
+      margin-top: 14px;
+    }
+
+    /* de grote rode... euh, roze knop */
+    .btn--reveal {
+      display: none;
+      background: linear-gradient(135deg, var(--amare-a), var(--amare-b));
+      color: #fff;
+      animation: revealPulse 2s ease-in-out infinite;
+    }
+
+    html.baby-active .btn--reveal { display: inline-block; }
+
+    @keyframes revealPulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(255, 107, 157, 0.5); }
+      50% { box-shadow: 0 0 0 12px rgba(255, 107, 157, 0); }
+    }
+
+    /* vangnet: toast als de knop na een tijdje nog niet geklikt is */
+    .baby-toast {
+      position: fixed;
+      left: 50%;
+      bottom: 20px;
+      transform: translateX(-50%) translateY(150%);
+      z-index: 900;
+      max-width: calc(100vw - 32px);
+      text-align: center;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      line-height: 1.5;
+      color: #fff;
+      background: linear-gradient(135deg, var(--amare-a), var(--amare-b));
+      padding: 14px 22px;
+      border-radius: 999px;
+      box-shadow: 0 10px 30px rgba(255, 107, 157, 0.35);
+      transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .baby-toast.show { transform: translateX(-50%) translateY(0); }
+
+    .baby-toast.wiggle { animation: toastWiggle 0.6s ease; }
+
+    @keyframes toastWiggle {
+      0%, 100% { transform: translateX(-50%) translateY(0) rotate(0); }
+      25% { transform: translateX(-50%) translateY(0) rotate(-2deg) scale(1.04); }
+      50% { transform: translateX(-50%) translateY(0) rotate(2deg) scale(1.04); }
+      75% { transform: translateX(-50%) translateY(0) rotate(-1deg); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .btn--reveal { animation: none; }
+      .baby-toast { transition: none; }
+      .baby-toast.wiggle { animation: none; }
+    }
+  </style>
+  <!-- /TEMP -->
 </head>
 <body>
+  <!-- TEMP: baby-aankondiging — wachtwoordpoort -->
+  <div class="gate" id="gate">
+    <div class="gate__box">
+      <p class="gate__logo">L-Craft<span>.</span></p>
+      <p class="gate__label">// private preview — v2.0</p>
+      <h1 class="gate__title">Deze preview is beveiligd</h1>
+      <p class="gate__hint">Voer het wachtwoord in om verder te gaan.</p>
+      <form class="gate__form" id="gateForm">
+        <input class="gate__input" id="gateInput" type="password" placeholder="wachtwoord"
+               autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Wachtwoord">
+        <button class="btn btn--primary" type="submit">Unlock →</button>
+      </form>
+      <p class="gate__error" id="gateError" hidden>// access denied — probeer opnieuw</p>
+    </div>
+  </div>
+  <a href="baby.html" class="baby-toast" id="babyToast" hidden>🎁 Psst… je hebt het geheim project nog niet bekeken</a>
+  <!-- /TEMP -->
   <div class="spotlight" id="spotlight" aria-hidden="true"></div>
 
   <!-- Navigation -->
@@ -46,6 +242,9 @@
         <div class="hero__actions">
           <a href="#contact" class="btn btn--primary">Work with me</a>
           <a href="#products" class="btn btn--ghost">See my products</a>
+          <!-- TEMP: baby-aankondiging — onthulknop -->
+          <a href="baby.html" class="btn btn--reveal">🎁 Geheim project</a>
+          <!-- /TEMP -->
           <span class="status"><span class="status__dot"></span>Open to freelance inquiries</span>
         </div>
       </div>
@@ -389,5 +588,63 @@
   </footer>
 
   <script src="js/main.js"></script>
+
+  <!-- TEMP: baby-aankondiging — wachtwoordlogica -->
+  <script>
+    (function () {
+      var form = document.getElementById('gateForm');
+      var input = document.getElementById('gateInput');
+      var error = document.getElementById('gateError');
+      if (!form) return;
+
+      if (document.documentElement.classList.contains('baby-locked')) {
+        input.focus();
+      }
+
+      // vangnet-toast: verschijnt 15 seconden na het ontgrendelen,
+      // tenzij de baby-pagina al bekeken is (vlag gezet door baby.html)
+      var toast = document.getElementById('babyToast');
+      var toastTimer = null;
+
+      function scheduleToast() {
+        if (toastTimer) return;
+        if (!document.documentElement.classList.contains('baby-active')) return;
+        if (localStorage.getItem('lc-baby-seen') === '1') return;
+        var params = new URLSearchParams(window.location.search);
+        var delay = params.has('toast') ? Number(params.get('toast')) : 15000;
+        toastTimer = setTimeout(function () {
+          if (localStorage.getItem('lc-baby-seen') === '1') return;
+          toast.hidden = false;
+          requestAnimationFrame(function () { toast.classList.add('show'); });
+          setInterval(function () {
+            toast.classList.remove('wiggle');
+            void toast.offsetWidth;
+            toast.classList.add('wiggle');
+          }, 8000);
+        }, delay);
+      }
+
+      if (!document.documentElement.classList.contains('baby-locked')) {
+        scheduleToast();
+      }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (input.value.trim().toLowerCase() === 'blokjes') {
+          sessionStorage.setItem('lc-unlocked', '1');
+          document.documentElement.classList.remove('baby-locked');
+          scheduleToast();
+        } else {
+          error.hidden = false;
+          input.value = '';
+          input.classList.remove('shake');
+          void input.offsetWidth; // restart de shake-animatie
+          input.classList.add('shake');
+          input.focus();
+        }
+      });
+    })();
+  </script>
+  <!-- /TEMP -->
 </body>
 </html>
