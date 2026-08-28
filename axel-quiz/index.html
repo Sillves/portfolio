@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Axel's Vrijgezellenquiz</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --paper: #fbf6ef;
+      --ink: #3d3630;
+      --soft: #8a7f73;
+      --blush: #e8b4b8;
+      --blush-deep: #d98e94;
+      --gold: #d9b98a;
+      --sage: #b5c4ad;
+      --good: #7c9473;
+      --bad: #c9645a;
+    }
+
+    html, body { height: 100%; }
+
+    body {
+      font-family: 'Karla', sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      min-height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 32px 16px;
+    }
+
+    .blob {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(90px);
+      opacity: 0.35;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .blob--1 { width: 45vmax; height: 45vmax; background: var(--blush); top: -18vmax; right: -12vmax; }
+    .blob--2 { width: 40vmax; height: 40vmax; background: var(--sage);  bottom: -16vmax; left: -14vmax; }
+    .blob--3 { width: 26vmax; height: 26vmax; background: var(--gold);  bottom: 8vmax; right: -8vmax; opacity: 0.22; }
+
+    .card {
+      position: relative;
+      max-width: 640px;
+      width: 100%;
+      z-index: 2;
+    }
+
+    .eyebrow {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--soft);
+      margin-bottom: 20px;
+    }
+
+    .title {
+      font-family: 'Fraunces', serif;
+      font-weight: 420;
+      font-size: clamp(2.2rem, 8vw, 3.4rem);
+      line-height: 1.1;
+      letter-spacing: -0.015em;
+      margin-bottom: 20px;
+    }
+
+    .subtitle {
+      font-size: 1.05rem;
+      color: var(--soft);
+      line-height: 1.6;
+      margin-bottom: 36px;
+    }
+
+    .btn {
+      display: inline-block;
+      font-family: 'Karla', sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      letter-spacing: 0.02em;
+      color: var(--paper);
+      background: var(--ink);
+      border: none;
+      border-radius: 999px;
+      padding: 16px 36px;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(61,54,48,0.18); }
+    .btn:active { transform: translateY(0); }
+    .btn--ghost {
+      background: transparent;
+      color: var(--ink);
+      border: 2px solid var(--ink);
+      padding: 14px 34px;
+    }
+
+    .progress {
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--soft);
+      margin-bottom: 18px;
+    }
+
+    .photo-wrap {
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(61,54,48,0.18);
+      margin-bottom: 28px;
+      background: #eee;
+      aspect-ratio: 4 / 3;
+    }
+    .photo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .question {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.4rem, 5vw, 1.9rem);
+      margin-bottom: 26px;
+    }
+
+    .options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 8px;
+    }
+    @media (max-width: 480px) {
+      .options { grid-template-columns: 1fr; }
+    }
+
+    .opt {
+      font-family: 'Karla', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--ink);
+      background: #fff;
+      border: 2px solid rgba(61,54,48,0.12);
+      border-radius: 14px;
+      padding: 16px 14px;
+      cursor: pointer;
+      transition: border-color 0.15s ease, transform 0.1s ease, background 0.15s ease;
+    }
+    .opt:hover { border-color: var(--gold); transform: translateY(-1px); }
+    .opt:disabled { cursor: default; }
+    .opt.correct { background: var(--good); border-color: var(--good); color: #fff; }
+    .opt.wrong { background: var(--bad); border-color: var(--bad); color: #fff; }
+    .opt.dim { opacity: 0.45; }
+
+    .feedback {
+      margin-top: 28px;
+      padding: 26px 22px;
+      border-radius: 18px;
+      display: none;
+    }
+    .feedback.show { display: block; animation: rise 0.4s ease forwards; }
+    .feedback--good { background: rgba(124,148,115,0.14); }
+    .feedback--bad { background: rgba(201,100,90,0.12); }
+
+    .feedback-title {
+      font-family: 'Fraunces', serif;
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+    }
+    .feedback-text {
+      color: var(--ink);
+      line-height: 1.55;
+      margin-bottom: 20px;
+    }
+
+    .score-list {
+      text-align: left;
+      list-style: none;
+      margin: 28px 0 34px;
+      display: grid;
+      gap: 10px;
+    }
+    .score-list li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 16px;
+      border-radius: 12px;
+      background: #fff;
+      border: 2px solid rgba(61,54,48,0.08);
+      font-weight: 600;
+    }
+    .score-list li.ok { border-color: rgba(124,148,115,0.4); }
+    .score-list li.no { border-color: rgba(201,100,90,0.35); }
+    .tag { font-size: 0.85rem; font-weight: 700; letter-spacing: 0.04em; }
+    .tag.ok { color: var(--good); }
+    .tag.no { color: var(--bad); }
+
+    .hidden { display: none !important; }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="blob blob--1"></div>
+  <div class="blob blob--2"></div>
+  <div class="blob blob--3"></div>
+
+  <div class="card">
+
+    <!-- INTRO -->
+    <section id="screen-intro">
+      <div class="eyebrow">Vrijgezellenfeest &middot; Axel</div>
+      <h1 class="title">Waar was Axel?</h1>
+      <p class="subtitle">
+        13 foto's, 13 plekken. Gok waar Axel stond &mdash;
+        goed geraden? Mooi zo. Fout geraden? Dan volgt een shotje
+        of een korte opdracht. Veel plezier!
+      </p>
+      <button class="btn" id="btn-start">Start de quiz</button>
+    </section>
+
+    <!-- QUIZ -->
+    <section id="screen-quiz" class="hidden">
+      <div class="progress" id="progress">Vraag 1 / 13</div>
+      <div class="photo-wrap"><img id="quiz-photo" src="" alt="Locatie foto"></div>
+      <div class="question">Waar is deze foto genomen?</div>
+      <div class="options" id="options"></div>
+
+      <div class="feedback" id="feedback">
+        <div class="feedback-title" id="feedback-title"></div>
+        <div class="feedback-text" id="feedback-text"></div>
+        <button class="btn" id="btn-next">Volgende vraag</button>
+      </div>
+    </section>
+
+    <!-- RESULT -->
+    <section id="screen-result" class="hidden">
+      <div class="eyebrow">Eindresultaat</div>
+      <h1 class="title" id="result-title"></h1>
+      <p class="subtitle" id="result-subtitle"></p>
+      <ul class="score-list" id="score-list"></ul>
+      <button class="btn btn--ghost" id="btn-restart">Nog eens spelen</button>
+    </section>
+
+  </div>
+
+  <script>
+    const LOCATIONS = [
+      { label: "Destelbergen", file: "destelbergen.jpeg" },
+      { label: "Londen", file: "londen.jpeg" },
+      { label: "Malaga", file: "malaga.jpeg" },
+      { label: "Mayrhofen", file: "mayrhofen.jpeg" },
+      { label: "Mechelen", file: "mechelen.jpeg" },
+      { label: "Rotselaar", file: "rotselaar.jpeg" },
+      { label: "Saalbach", file: "saalbach.jpeg" },
+      { label: "Sicilië", file: "sicilie.jpeg" },
+      { label: "Sint-Martens-Latem", file: "sint-martens-latem.jpeg" },
+      { label: "Beerse", file: "beerse.jpeg" },
+      { label: "Ischgl", file: "ischgl.jpeg" },
+      { label: "Turnhout", file: "turnhout.jpeg" },
+      { label: "Zaventem", file: "zaventem.jpeg" },
+    ];
+
+    const PUNISHMENTS = [
+      "Neem een shotje!",
+      "Doe 10 push-ups voor de groep.",
+      "Zing het eerste couplet van een liedje naar keuze.",
+      "Praat de volgende minuut met een nepaccent.",
+      "Geef de persoon rechts van je een compliment... in dichtvorm.",
+      "Doe je beste dansmove, 10 seconden lang, midden in de kring.",
+      "Vertel een gênant jeugdverhaal over Axel.",
+      "Neem een shotje en laat iemand anders een emoji kiezen die je moet uitbeelden.",
+      "Praat de komende twee vragen enkel op fluistertoon.",
+      "Doe een shotje terwijl je op één been staat.",
+      "Laat de groep een bijnaam voor jou kiezen voor de rest van de avond.",
+      "Imiteer Axel, 10 seconden lang.",
+      "Drink je glas voor de helft leeg, zonder je handen te gebruiken.",
+      "Doe een plank tot iemand 'stop' roept (max. 20 seconden).",
+      "Neem een shotje en breng een toost uit op Axel.",
+    ];
+
+    function shuffle(arr) {
+      const a = arr.slice();
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+      }
+      return a;
+    }
+
+    let quizOrder = [];
+    let current = 0;
+    let results = [];
+    let answered = false;
+
+    const screenIntro = document.getElementById('screen-intro');
+    const screenQuiz = document.getElementById('screen-quiz');
+    const screenResult = document.getElementById('screen-result');
+    const progressEl = document.getElementById('progress');
+    const photoEl = document.getElementById('quiz-photo');
+    const optionsEl = document.getElementById('options');
+    const feedbackEl = document.getElementById('feedback');
+    const feedbackTitle = document.getElementById('feedback-title');
+    const feedbackText = document.getElementById('feedback-text');
+
+    document.getElementById('btn-start').addEventListener('click', startQuiz);
+    document.getElementById('btn-next').addEventListener('click', nextQuestion);
+    document.getElementById('btn-restart').addEventListener('click', startQuiz);
+
+    function startQuiz() {
+      quizOrder = shuffle(LOCATIONS);
+      current = 0;
+      results = [];
+      screenIntro.classList.add('hidden');
+      screenResult.classList.add('hidden');
+      screenQuiz.classList.remove('hidden');
+      renderQuestion();
+    }
+
+    function renderQuestion() {
+      answered = false;
+      feedbackEl.classList.remove('show', 'feedback--good', 'feedback--bad');
+      const item = quizOrder[current];
+      progressEl.textContent = `Vraag ${current + 1} / ${quizOrder.length}`;
+      photoEl.src = `/img/axel-quiz/${item.file}`;
+      photoEl.alt = "Waar is deze foto genomen?";
+
+      const distractors = shuffle(
+        LOCATIONS.filter(l => l.label !== item.label)
+      ).slice(0, 3);
+      const choices = shuffle([item, ...distractors]);
+
+      optionsEl.innerHTML = '';
+      choices.forEach(choice => {
+        const btn = document.createElement('button');
+        btn.className = 'opt';
+        btn.textContent = choice.label;
+        btn.addEventListener('click', () => selectAnswer(choice, item, btn));
+        optionsEl.appendChild(btn);
+      });
+    }
+
+    function selectAnswer(choice, correctItem, btnEl) {
+      if (answered) return;
+      answered = true;
+      const isCorrect = choice.label === correctItem.label;
+      results.push({ label: correctItem.label, correct: isCorrect });
+
+      [...optionsEl.children].forEach(btn => {
+        btn.disabled = true;
+        if (btn.textContent === correctItem.label) {
+          btn.classList.add('correct');
+        } else if (btn === btnEl) {
+          btn.classList.add('wrong');
+        } else {
+          btn.classList.add('dim');
+        }
+      });
+
+      feedbackEl.classList.add('show');
+      if (isCorrect) {
+        feedbackEl.classList.add('feedback--good');
+        feedbackTitle.textContent = "Juist! 🎉";
+        feedbackText.textContent = `Inderdaad, ${correctItem.label}. Goed gegokt.`;
+      } else {
+        feedbackEl.classList.add('feedback--bad');
+        feedbackTitle.textContent = "Fout! 😬";
+        const straf = PUNISHMENTS[Math.floor(Math.random() * PUNISHMENTS.length)];
+        feedbackText.textContent = `Het was ${correctItem.label}. Straf: ${straf}`;
+      }
+    }
+
+    function nextQuestion() {
+      current++;
+      if (current >= quizOrder.length) {
+        showResult();
+      } else {
+        renderQuestion();
+      }
+    }
+
+    function showResult() {
+      screenQuiz.classList.add('hidden');
+      screenResult.classList.remove('hidden');
+
+      const score = results.filter(r => r.correct).length;
+      document.getElementById('result-title').textContent = `${score} / ${results.length}`;
+      document.getElementById('result-subtitle').textContent =
+        score === results.length
+          ? "Perfect! Axel's persoonlijke stalker."
+          : score >= results.length / 2
+          ? "Niet slecht, maar er zijn genoeg shotjes gevallen."
+          : "Tijd om Axel wat beter te leren kennen... en nog een shotje.";
+
+      const list = document.getElementById('score-list');
+      list.innerHTML = '';
+      results.forEach(r => {
+        const li = document.createElement('li');
+        li.className = r.correct ? 'ok' : 'no';
+        li.innerHTML = `<span>${r.label}</span><span class="tag ${r.correct ? 'ok' : 'no'}">${r.correct ? 'GOED' : 'FOUT'}</span>`;
+        list.appendChild(li);
+      });
+    }
+  </script>
+</body>
+</html>
