@@ -263,19 +263,19 @@
 
   <script>
     const LOCATIONS = [
-      { label: "Destelbergen", file: "destelbergen.jpeg" },
-      { label: "Londen", file: "londen.jpeg" },
-      { label: "Malaga", file: "malaga.jpeg" },
-      { label: "Mayrhofen", file: "mayrhofen.jpeg" },
-      { label: "Mechelen", file: "mechelen.jpeg" },
-      { label: "Rotselaar", file: "rotselaar.jpeg" },
-      { label: "Saalbach", file: "saalbach.jpeg" },
-      { label: "Sicilië", file: "sicilie.jpeg" },
-      { label: "Sint-Martens-Latem", file: "sint-martens-latem.jpeg" },
-      { label: "Beerse", file: "beerse.jpeg" },
-      { label: "Ischgl", file: "ischgl.jpeg" },
-      { label: "Turnhout", file: "turnhout.jpeg" },
-      { label: "Zaventem", file: "zaventem.jpeg" },
+      { label: "Destelbergen", file: "destelbergen.jpeg", region: "belgie" },
+      { label: "Mechelen", file: "mechelen.jpeg", region: "belgie" },
+      { label: "Rotselaar", file: "rotselaar.jpeg", region: "belgie" },
+      { label: "Sint-Martens-Latem", file: "sint-martens-latem.jpeg", region: "belgie" },
+      { label: "Beerse", file: "beerse.jpeg", region: "belgie" },
+      { label: "Turnhout", file: "turnhout.jpeg", region: "belgie" },
+      { label: "Zaventem", file: "zaventem.jpeg", region: "belgie" },
+      { label: "Mayrhofen", file: "mayrhofen.jpeg", region: "oostenrijk" },
+      { label: "Saalbach", file: "saalbach.jpeg", region: "oostenrijk" },
+      { label: "Ischgl", file: "ischgl.jpeg", region: "oostenrijk" },
+      { label: "Londen", file: "londen.jpeg", region: "citytrip" },
+      { label: "Malaga", file: "malaga.jpeg", region: "citytrip" },
+      { label: "Sicilië", file: "sicilie.jpeg", region: "citytrip" },
     ];
 
     const PUNISHMENTS = [
@@ -342,9 +342,13 @@
       photoEl.src = `/img/axel-quiz/${item.file}`;
       photoEl.alt = "Waar is deze foto genomen?";
 
-      const distractors = shuffle(
-        LOCATIONS.filter(l => l.label !== item.label)
-      ).slice(0, 3);
+      const sameRegion = shuffle(
+        LOCATIONS.filter(l => l.label !== item.label && l.region === item.region)
+      );
+      const otherRegion = shuffle(
+        LOCATIONS.filter(l => l.label !== item.label && l.region !== item.region)
+      );
+      const distractors = [...sameRegion, ...otherRegion].slice(0, 3);
       const choices = shuffle([item, ...distractors]);
 
       optionsEl.innerHTML = '';
