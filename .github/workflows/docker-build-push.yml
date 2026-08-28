@@ -7,8 +7,11 @@ on:
       - develop
     paths:
       - 'index.html'
+      - 'baby.html'
       - 'css/**'
       - 'js/**'
+      - 'img/**'
+      - 'axel-quiz/**'
       - 'assets/**'
       - 'Dockerfile'
       - 'nginx.conf'
