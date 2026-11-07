@@ -8,6 +8,7 @@ on:
     paths:
       - 'index.html'
       - 'baby.html'
+      - 'beerse.html'
       - 'css/**'
       - 'js/**'
       - 'img/**'
