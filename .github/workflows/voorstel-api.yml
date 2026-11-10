@@ -13,6 +13,11 @@ on:
       - '.github/workflows/voorstel-api.yml'
   workflow_dispatch:
 
+# Builds na elkaar laten lopen: anders kan een oudere build als laatste 'latest' pushen.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
 env:
   REGISTRY: rg.fr-par.scw.cloud
   NAMESPACE: amare-wedding
