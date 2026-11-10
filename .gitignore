@@ -1,1 +1,4 @@
 .DS_Store
+
+# Onversleutelde inhoud van beerse.html (tools/beerse-crypt.mjs) - nooit committen
+.beerse-src/
