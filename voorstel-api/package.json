@@ -1,0 +1,14 @@
+{
+  "name": "voorstel-api",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Opslag van versleutelde versies voor de voorstelpagina",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "node --test --experimental-test-coverage test/app.test.js"
+  }
+}
